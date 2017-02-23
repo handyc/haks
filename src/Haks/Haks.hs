@@ -1,15 +1,20 @@
 module Haks.Haks where
 
-import BasicPrelude
+import BasicPrelude hiding (filter)
+import Data.Text
+import Data.Char
 import Haks.Types
 
-charCheck :: (Text -> b) -> Text -> b
+charCheck :: (Text -> Maybe b) -> Text -> b
 charCheck = error ("charCheck undefined")
 
 chineseTokenizer :: Text -> Maybe ChineseToken
 chineseTokenizer tok = ChineseToken <$> fromBool isTok tok
   where
-    isTok = not (tok `elem` not_tokens)
+    isTok = tok == notAlphaNum && notJunk
+    notJunk     = not (tok `elem` not_tokens)
+    notAlphaNum = filter (not . isAlphaNum) tok
+    
 
 not_tokens :: [Text]
 not_tokens = [ " ", "。", ".", "\n", "-", ",", "/", "(", "\\", "║", "=", ":"
