@@ -5,7 +5,6 @@ import Data.Text
 import Data.Char
 
 import Haks.Types
-import Haks.Chinese.Types
 import Haks.Utilities
 
 chineseTokenizer :: Text -> Maybe (Token,Text)
