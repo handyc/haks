@@ -29,8 +29,10 @@ library
   default-extensions: NoImplicitPrelude, OverloadedStrings
   ghc-options:       -Wall -O2
   hs-source-dirs:    src
-  exposed-modules:   Haks.Haks
-                     Haks.Types
+  exposed-modules:   Haks.Chinese.Tokenizer 
+                     Haks.Chinese.Types
+                     Haks.Engine
+                     Haks.Utilities
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
                    , text

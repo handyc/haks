@@ -1,4 +1,4 @@
-module Haks.Types where
+module Haks.Chinese.Types where
 
 import BasicPrelude
 
