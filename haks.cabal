@@ -31,7 +31,6 @@ library
   hs-source-dirs:    src
   exposed-modules:   Haks.Aksarify
                      Haks.Chinese.Tokenizer 
-                     Haks.Chinese.Types
                      Haks.Engine
                      Haks.Types
                      Haks.Utilities
