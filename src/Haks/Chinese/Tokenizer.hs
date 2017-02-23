@@ -4,11 +4,12 @@ import BasicPrelude hiding (filter)
 import Data.Text
 import Data.Char
 
+import Haks.Types
 import Haks.Chinese.Types
 import Haks.Utilities
 
-chineseTokenizer :: Text -> Maybe ChineseToken
-chineseTokenizer tok = ChineseToken <$> fromBool isTok tok
+chineseTokenizer :: Text -> Maybe (Token,Text)
+chineseTokenizer tok = (,) Chinese <$> fromBool isTok tok
   where
     isTok = tok == notAlphaNum && notJunk
     notJunk     = not (tok `elem` not_tokens)

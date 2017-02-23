@@ -14,5 +14,11 @@ data Aksara = Aksara
   , tone_a     :: Tone
   }
 
+data Token 
+  = Chinese
+  | TIBETAN_ROMAN
+  | TIBETAN_UCHEN
+  | SANSKRIT_UNICODE
+  | SANSKRIT_DEVA
 data Strength = Strength
 data Tone     = Tone

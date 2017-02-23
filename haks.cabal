@@ -33,6 +33,7 @@ library
                      Haks.Chinese.Tokenizer 
                      Haks.Chinese.Types
                      Haks.Engine
+                     Haks.Types
                      Haks.Utilities
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
@@ -44,6 +45,7 @@ executable haks-exe
   hs-source-dirs:    src-exe
   main-is:           Main.hs
   build-depends:     base >= 4.8 && < 5
+                   , basic-prelude
                    , haks
 
 test-suite haks-test
