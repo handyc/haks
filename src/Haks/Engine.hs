@@ -12,7 +12,6 @@ haks :: [Aksara] -> Text -> Haksara a
 haks xs candidate = do
   (HaksaraConfig tokenizer aksaranator glyphinate) <- ask
   let m_token = charCheck tokenizer candidate
-  let 
   return []
 
 charCheck :: (Text -> Maybe b) -> Text -> Maybe b
