@@ -29,7 +29,7 @@ library
   default-extensions: NoImplicitPrelude, OverloadedStrings
   ghc-options:       -Wall -O2
   hs-source-dirs:    src
-  exposed-modules:   Haks.Aksharify
+  exposed-modules:   Haks.Chinese.Particlize
                      Haks.Chinese.Tokenizer 
                      Haks.Engine
                      Haks.Types

@@ -6,22 +6,22 @@ import Data.Sequence
 import Data.Maybe
 import Data.Text hiding (empty)
 
-data SyllableConfig b = SyllableConfig
-  { tokenizer_hc     :: (Text -> Maybe b)
-  , glyphinate_hc    :: (Seq Glyph -> b -> Seq Glyph)
-  , syllablinator_hc :: (Seq Syllable -> Glyph -> Seq Syllable)
-  }
-data Glyph = Glyph
-  { glyph_g      :: Text
-  , strength_g   :: Strength
-  , tone_g       :: Tone
+data ParticleConfig = ParticleConfig
+  { tokenizer_hc     :: (Text -> Maybe (Token,Text))
+  , glyphinate_hc    :: (Seq Glyph -> (Token,Text) -> Seq Glyph)
+  , particlize_hc :: (Seq Particle -> Glyph -> Seq Particle)
   }
 
-data Syllable = Syllable
-  { syllable_a   :: Text
-  , strength_a :: Strength
-  , tone_a     :: Tone
-  }
+data Glyph = Glyph
+  { glyph_g      :: Text
+  , complete_g   :: Bool
+  } deriving Show
+  
+
+data Particle = Particle
+  { particle_a   :: Text
+  , complete_a   :: Bool 
+  } deriving Show
 
 data Token 
   = Chinese
@@ -29,11 +29,13 @@ data Token
   | TIBETAN_UCHEN
   | SANSKRIT_UNICODE
   | SANSKRIT_DEVA
+    deriving Show
+
 data Strength = Strength
 data Tone     = Tone
 
 init_glyph :: Seq Glyph
 init_glyph = empty
 
-init_syllable :: Seq Syllable
+init_syllable :: Seq Particle
 init_syllable = empty

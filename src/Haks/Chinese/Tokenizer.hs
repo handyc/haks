@@ -7,12 +7,12 @@ import Data.Char
 import Haks.Types
 import Haks.Utilities
 
-chineseTokenizer :: Text -> Maybe (Token,Text)
-chineseTokenizer tok = (,) Chinese <$> fromBool isTok tok
+tokenizer :: Text -> Maybe (Token,Text)
+tokenizer tok = (,) Chinese <$> fromBool isTok tok
   where
     isTok = tok == notAlphaNum && notJunk
     notJunk     = not (tok `elem` not_tokens)
-    notAlphaNum = filter (not . isAlphaNum) tok
+    notAlphaNum = filter (isAlphaNum) tok
 
 not_tokens :: [Text]
 not_tokens = [ " ", "。", ".", "\n", "-", ",", "/", "(", "\\", "║", "=", ":"
