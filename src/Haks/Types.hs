@@ -6,8 +6,6 @@ import Data.Sequence
 import Data.Maybe
 import Data.Text hiding (empty)
 
-type Hakshara b = Reader (SyllableConfig b) (Seq Syllable)
-
 data SyllableConfig b = SyllableConfig
   { tokenizer_hc     :: (Text -> Maybe b)
   , glyphinate_hc    :: (Seq Glyph -> b -> Seq Glyph)
