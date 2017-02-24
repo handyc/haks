@@ -9,9 +9,9 @@ import Haks.Types
 import Haks.Chinese.Tokenizer
 
 haks :: [Text] -> ParticleConfig -> Seq Particle
-haks corpus (ParticleConfig tokenizer glyphIT particlizor) = 
+haks corpus (ParticleConfig tokenate glyphIT particlizor) = 
   (particles . glyphs . tokens) corpus
   where
-    tokens    = mapMaybe tokenizer
+    tokens    = mapMaybe tokenate
     glyphs    = foldl' glyphIT init_glyph
     particles = foldl' particlizor init_syllable
