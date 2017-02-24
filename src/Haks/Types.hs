@@ -1,15 +1,17 @@
 module Haks.Types where
 
+import BasicPrelude hiding (empty)
 import Control.Monad.Reader
+import Data.Sequence
 import Data.Maybe
-import Data.Text
+import Data.Text hiding (empty)
 
-type Hakshara b = Reader (SyllableConfig b) [Syllable]
+type Hakshara b = Reader (SyllableConfig b) (Seq Syllable)
 
 data SyllableConfig b = SyllableConfig
   { tokenizer_hc     :: (Text -> Maybe b)
-  , syllablinator_hc :: (Glyph -> Syllable -> Syllable)
-  , glyphinate_hc    :: (Text  -> Glyph  -> Glyph)
+  , syllablinator_hc :: (Seq Syllable -> Glyph -> Seq Syllable)
+  , glyphinate_hc    :: (Seq Glyph -> b -> Seq Glyph)
   }
 data Glyph = Glyph
   { glyph_g      :: Text
@@ -31,3 +33,9 @@ data Token
   | SANSKRIT_DEVA
 data Strength = Strength
 data Tone     = Tone
+
+init_glyph :: Seq Glyph
+init_glyph = empty
+
+init_syllable :: Seq Syllable
+init_syllable = empty
