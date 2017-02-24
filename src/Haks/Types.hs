@@ -10,8 +10,8 @@ type Hakshara b = Reader (SyllableConfig b) (Seq Syllable)
 
 data SyllableConfig b = SyllableConfig
   { tokenizer_hc     :: (Text -> Maybe b)
-  , syllablinator_hc :: (Seq Syllable -> Glyph -> Seq Syllable)
   , glyphinate_hc    :: (Seq Glyph -> b -> Seq Glyph)
+  , syllablinator_hc :: (Seq Syllable -> Glyph -> Seq Syllable)
   }
 data Glyph = Glyph
   { glyph_g      :: Text
