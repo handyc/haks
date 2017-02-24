@@ -8,9 +8,9 @@ import Data.Char
 import Haks.Types
 import Haks.Chinese.Tokenizer
 
-haks :: [Aksara] -> Text -> Haksara a
+haks :: [Syllable] -> Text -> Hakshara a
 haks xs candidate = do
-  (HaksaraConfig tokenizer aksaranator glyphinate) <- ask
+  (SyllableConfig tokenizer syllablinator glyphinate) <- ask
   let m_token = charCheck tokenizer candidate
   return []
 

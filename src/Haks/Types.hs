@@ -4,12 +4,12 @@ import Control.Monad.Reader
 import Data.Maybe
 import Data.Text
 
-type Haksara b = Reader (HaksaraConfig b) [Aksara]
+type Hakshara b = Reader (SyllableConfig b) [Syllable]
 
-data HaksaraConfig b = HaksaraConfig
-  { tokenizer_hc   :: (Text -> Maybe b)
-  , aksaranator_hc :: (Glyph -> Aksara -> Aksara)
-  , glyphinate_hc  :: (Text  -> Glyph  -> Glyph)
+data SyllableConfig b = SyllableConfig
+  { tokenizer_hc     :: (Text -> Maybe b)
+  , syllablinator_hc :: (Glyph -> Syllable -> Syllable)
+  , glyphinate_hc    :: (Text  -> Glyph  -> Glyph)
   }
 data Glyph = Glyph
   { glyph_g      :: Text
@@ -17,8 +17,8 @@ data Glyph = Glyph
   , tone_g       :: Tone
   }
 
-data Aksara = Aksara
-  { aksara_a   :: Text
+data Syllable = Syllable
+  { syllable_a   :: Text
   , strength_a :: Strength
   , tone_a     :: Tone
   }
