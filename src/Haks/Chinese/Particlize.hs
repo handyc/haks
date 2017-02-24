@@ -13,17 +13,16 @@ glyphinate glyphs (_,char)
   where
     glyph = Glyph { glyph_g = char, complete_g = True }
 
-particlize :: Seq Particle -> Glyph -> Seq Particle
-particlize particles (Glyph glyph _) 
+particlize :: Seq Particle -> (Token,Text) -> Seq Particle
+particlize particles (_,char) 
   | (null particles) = singleton particle
   | otherwise        =  particles |> particle
   where
-    particle = Particle { particle_a = glyph, complete_a = True }
+    particle = Particle { particle_a = char, complete_a = True }
 
 chinese_config :: ParticleConfig
 chinese_config = ParticleConfig 
   { tokenizer_hc  = tokenizer
-  , glyphinate_hc = glyphinate
   , particlize_hc   = particlize
   }
 

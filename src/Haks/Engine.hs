@@ -10,9 +10,8 @@ import Haks.NGram
 import Haks.Chinese.Tokenizer
 
 haks :: [Text] -> ParticleConfig -> Int -> Seq NGram
-haks corpus (ParticleConfig tokenate glyphIT particlizor) n = 
-  (ngram n . particles . glyphs . tokens) corpus
+haks corpus (ParticleConfig tokenate particlizor) n = 
+  (ngram n . particles . tokens) corpus
   where
     tokens    = mapMaybe tokenate
-    glyphs    = foldl' glyphIT init_glyph
     particles = foldl' particlizor init_syllable

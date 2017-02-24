@@ -8,8 +8,7 @@ import Data.Text hiding (empty)
 
 data ParticleConfig = ParticleConfig
   { tokenizer_hc     :: (Text -> Maybe (Token,Text))
-  , glyphinate_hc    :: (Seq Glyph -> (Token,Text) -> Seq Glyph)
-  , particlize_hc :: (Seq Particle -> Glyph -> Seq Particle)
+  , particlize_hc :: (Seq Particle -> (Token,Text) -> Seq Particle)
   }
 
 data Glyph = Glyph
