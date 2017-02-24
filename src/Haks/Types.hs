@@ -34,6 +34,7 @@ data Token
 data Strength = Strength
 data Tone     = Tone
 
+type NGram = Text
 init_glyph :: Seq Glyph
 init_glyph = empty
 
