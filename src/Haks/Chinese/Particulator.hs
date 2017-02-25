@@ -25,7 +25,6 @@ chinese_config = ParticleConfig
   , particlate_hc   = particlate
   }
 
-not_tokens :: [Text]
 not_tokens = [ " ", "。", ".", "\n", "-", ",", "/", "(", "\\", "║", "=", ":"
              , "#", "_", "\r", "【", "】", ",", "》", "，", "　", "、", "："
              , "「", "」", "？", "！", "；", "『", "』", "）", "（", "．", "…"

@@ -11,3 +11,4 @@ oneSpace :: [(Token,Text)] -> [(Token,Text)]
 oneSpace []                       = []
 oneSpace ((Space,_):(Space,y):xs) = (Space,y):oneSpace xs
 oneSpace (x:xs)                   = x:oneSpace xs
+

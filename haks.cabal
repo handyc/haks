@@ -33,6 +33,7 @@ library
                      Haks.Engine
                      Haks.NGram
                      Haks.Tibetan.Roman.Particulator
+                     Haks.Tibetan.Uchen.Particulator
                      Haks.Types
                      Haks.Utilities
   build-depends:     base >= 4.8 && < 5

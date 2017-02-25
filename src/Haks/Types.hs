@@ -17,13 +17,16 @@ data Token
   = Chinese
   | TIBETAN_ROMAN
   | Space
-  | TIBETAN_UCHEN
+  | TIBETAN_UCHEN UChenToken
   | SANSKRIT_UNICODE
   | SANSKRIT_DEVA
     deriving Show
 
-data Strength = Strength
-data Tone     = Tone
+data UChenToken
+  = TSheg
+  | Shad
+  | StdChar_UC
+    deriving Show
 
 type NGram = Text
 
