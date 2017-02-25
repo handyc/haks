@@ -4,6 +4,7 @@ module Haks.Tibetan.Uchen.Particulator where
 import BasicPrelude hiding (empty,all,null)
 
 import Data.Char
+import Data.Monoid
 import Data.Text hiding (head,reverse)
 import Haks.Types 
 import Haks.Utilities
@@ -25,7 +26,13 @@ tokenizer tok
 
 particulate :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
 particulate (null -> True) particles [] = reverse particles
-particulate particle particles ((TIBETAN_UCHEN TSheg,tok):xs) = undefined
+particulate particle particles ((TIBETAN_UCHEN TSheg,tsheg):xs) =
+  (syllable_marker:particles) <> (particulate empty [] xs)
+  where
+    syllable_marker = particle <> tsheg
+particulate particle particles ((TIBETAN_UCHEN StdChar_UC,char):xs) =
+  particulate (particle `append` char) particles xs
+particulate _ _ _ = []
   
 
 
