@@ -16,6 +16,7 @@ type Particle = Text
 data Token 
   = Chinese
   | TIBETAN_ROMAN
+  | Space
   | TIBETAN_UCHEN
   | SANSKRIT_UNICODE
   | SANSKRIT_DEVA
