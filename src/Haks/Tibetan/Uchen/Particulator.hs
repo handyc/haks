@@ -26,22 +26,31 @@ tokenizer tok
 
 particulate :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
 particulate (null -> True) particles [] = reverse particles
-particulate particle particles ((TIBETAN_UCHEN TSheg,tsheg):xs) =
+particulate particle particles ((TIBETAN_UCHEN TSheg,tsheg'):xs) =
   (syllable_marker:particles) <> (particulate empty [] xs)
   where
-    syllable_marker = particle <> tsheg
+    syllable_marker = particle <> tsheg'
 particulate particle particles ((TIBETAN_UCHEN StdChar_UC,char):xs) =
   particulate (particle `append` char) particles xs
 particulate _ _ _ = []
   
-
-
 shad :: [Text]
 shad = ["།","༑"]
 
 tsheg :: [Text]
 tsheg = ["་","༌"]
 
+tibetan_u :: ParticleConfig
+tibetan_u = ParticleConfig
+  { tokenizer_hc = tokenizer
+  , particlate_hc = particulate
+  }
+
 not_token :: [Text]
 not_token = [ "།",".","\n","-",",","/","(",")","\\","║","=",":" 
              ,"#","_","\r","【","】","[","]",",","》"]
+
+test :: [Text]
+test=["༄༅","།"," ","།","འ","དུ","ལ","་","བ","་","ཀ","་","བ","ཞུ","ག","ས","་","སོ","།"," ","།","༄","༅","༅","།"," ","།","རྒྱ","་","ག","ར","་","སྐ","ད","་","དུ","།"," ","བི","་","ན","་","ཡ","་","བ","སྟུ","།"," ","བོ","ད","་","སྐ","ད","་","དུ","།"," ","འ","དུ","ལ","་","བ","་","ག","ཞི","།"," ","བ","མ","་","པོ","་","ད","ང","་","པོ","།"," ","ད","ཀོ","ན","་","མ","ཆོ","ག","་","ག","སུ","མ","་","ལ","་","ཕྱ","ག","་","འ","ཚ","ལ","་","ལོ","།"]
+
+
