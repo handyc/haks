@@ -1,21 +1,19 @@
+{-# LANGUAGE ViewPatterns #-}
 module Haks.Tibetan.Uchen.Particulator where
 
-import BasicPrelude hiding (empty,all)
+import BasicPrelude hiding (empty,all,null)
 
 import Data.Char
-import Data.Text
-import Haks.Types
+import Data.Text hiding (head,reverse)
+import Haks.Types 
 import Haks.Utilities
-
-
-
 
 tokenizer :: Text -> Maybe (Token,Text)
 tokenizer tok
   | isAlphaNum' = Nothing
   | isSpace'    = Nothing
   | isGarbage   = Nothing
-  | isShad      = Just (TIBETAN_UCHEN Shad, tok)
+  | isShad      = Just (TIBETAN_UCHEN TSheg, head tsheg)
   | isTsheg     = Just (TIBETAN_UCHEN TSheg, tok)
   | otherwise   = Just (TIBETAN_UCHEN StdChar_UC, tok)
   where
@@ -24,6 +22,12 @@ tokenizer tok
     isShad      = tok `elem` shad
     isTsheg     = tok `elem` tsheg
     isGarbage   = tok `elem` not_token
+
+particulate :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
+particulate (null -> True) particles [] = reverse particles
+particulate particle particles ((TIBETAN_UCHEN TSheg,tok):xs) = undefined
+  
+
 
 shad :: [Text]
 shad = ["།","༑"]

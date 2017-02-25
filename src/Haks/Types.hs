@@ -24,7 +24,6 @@ data Token
 
 data UChenToken
   = TSheg
-  | Shad
   | StdChar_UC
     deriving Show
 
