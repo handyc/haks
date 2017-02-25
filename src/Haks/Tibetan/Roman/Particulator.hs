@@ -21,11 +21,6 @@ tokenizer tok
     isAlpha' = all isAlpha tok
     isSpace'    = all isSpace tok
 
-oneSpace :: [(Token,Text)] -> [(Token,Text)]
-oneSpace []                       = []
-oneSpace ((Space,_):(Space,y):xs) = (Space,y):oneSpace xs
-oneSpace (x:xs)                   = x:oneSpace xs
-
 particulate :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
 particulate (null -> True) particles [] = reverse particles
 particulate particle particles ((Space,_):xs) = 

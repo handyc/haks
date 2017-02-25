@@ -7,10 +7,11 @@ import Data.Char
 
 import Haks.Types
 import Haks.NGram
+import Haks.Utilities
 
 haks :: [Text] -> ParticleConfig -> Int -> [NGram]
 haks corpus (ParticleConfig tokenate particulizor) n = 
-  (ngram n . (particulizor empty []) . tokens) corpus
+  (ngram n . (particulizor empty []) . oneSpace . tokens) corpus
   where
     tokens    = mapMaybe tokenate
 
