@@ -1,15 +1,14 @@
 {-# LANGUAGE ViewPatterns #-}
 module Haks.NGram where
 
-import BasicPrelude hiding (drop,take,empty,null)
-import Data.Foldable hiding (null,concat)
-import Data.Sequence
+import BasicPrelude
+import Data.Foldable hiding (concat)
 
 import Haks.Types
 
-ngram :: Int -> Seq Particle -> Seq NGram
-ngram _ (null -> True) = empty
-ngram n particles = item <| (ngram n rest) 
+ngram :: Int -> [Particle] -> [NGram]
+ngram _ [] = []
+ngram n particles = item : (ngram n rest) 
   where
-    item = concat $ toList (particle_a <$> (take n particles))
+    item = concat $ toList (take n particles)
     rest = drop 1 particles
