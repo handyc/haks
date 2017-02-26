@@ -7,8 +7,8 @@ import Data.Maybe
 import Data.Text hiding (empty)
 
 data ParticleConfig = ParticleConfig
-  { tokenizer_hc  :: Text -> Maybe (Token,Text)
-  , particlate_hc :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
+  { tokenizer_hc  :: Char -> Maybe (Token,Char)
+  , particlate_hc :: Text -> [Particle] -> [(Token,Char)] -> [Particle]
   }
 
 type Particle = Text
@@ -20,12 +20,12 @@ data Token
   | TIBETAN_UCHEN UChenToken
   | SANSKRIT_UNICODE
   | SANSKRIT_DEVA
-    deriving Show
+    deriving (Eq,Show)
 
 data UChenToken
   = TSheg
   | StdChar_UC
-    deriving Show
+    deriving (Eq,Show)
 
 type NGram = Text
 

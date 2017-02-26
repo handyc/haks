@@ -10,28 +10,31 @@ import Haks.Types
 import Haks.Utilities
 
 
-tokenizer :: Text -> Maybe (Token, Text)
+tokenizer :: Char -> Maybe (Token, Char)
 tokenizer tok 
   | isAlpha' = Just (TIBETAN_ROMAN, tok)
-  | tok == "\'" = Just (TIBETAN_ROMAN, tok)
+  | tok == '\'' = Just (TIBETAN_ROMAN, tok)
   | isSpace'    = Just (Space,tok)
   | otherwise   = Nothing
   where
-    isTok = isAlpha' || isSpace'
-    isAlpha' = all isAlpha tok
-    isSpace'    = all isSpace tok
+    isTok    = isAlpha' || isSpace'
+    isAlpha' = isAlpha tok
+    isSpace' = isSpace tok
 
-particulate :: Text -> [Particle] -> [(Token,Text)] -> [Particle]
+particulate :: Text -> [Particle] -> [(Token,Char)] -> [Particle]
 particulate (null -> True) particles [] = reverse particles
 particulate particle particles ((Space,_):xs) = 
   (particle:particles) ++ (particulate empty [] xs)
-particulate particle particles ((_,char):xs) = particulate (particle `append` char) particles xs
+particulate particle particles ((_,char):xs) = 
+  particulate (particle `append` (pack $ char : [])) particles xs
 particulate _ _ [] = []
-
+{-
 tibetan_r :: ParticleConfig
 tibetan_r = ParticleConfig
   { tokenizer_hc = tokenizer
   , particlate_hc = particulate
   }
-test :: [Text]
-test = ["@","1","B"," ","*",","," ",",","'","D","U","L"," ","'","D","Z","I","N"," ","C","H","E","N"," ","P","O"," ","G","N","A","S"," ","B","R","T","A","N"," ","N","Y","E"," ","B","A","R"," ","'","K","H","O","R",","," ",","]
+-}
+
+test :: [Char]
+test = ['@','1','B',' ','*',',',' ',',','\'','D','U','L',' ','\'','D','Z','I','N',' ','C','H','E','N',' ','P','O',' ','G','N','A','S',' ','B','R','T','A','N',' ','N','Y','E',' ','B','A','R',' ','\'','K','H','O','R',',',' ',',']
