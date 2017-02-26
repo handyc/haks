@@ -5,9 +5,7 @@ import BasicPrelude hiding (empty,all,null)
 
 import Data.Char
 import Data.Text hiding (reverse,head)
-import Data.Monoid
 import Haks.Types 
-import Haks.Utilities
 
 preProcessor :: [Char] -> [Char]
 preProcessor [] = []
