@@ -32,6 +32,7 @@ library
   exposed-modules:   Haks.Chinese.Particulator
                      Haks.Engine
                      Haks.NGram
+                     Haks.Sanskrit.Roman.Particulator
                      Haks.Tibetan.Roman.Particulator
                      Haks.Tibetan.Uchen.Particulator
                      Haks.Types

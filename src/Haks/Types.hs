@@ -20,8 +20,15 @@ data Token
   | TIBETAN_ROMAN
   | Space
   | TIBETAN_UCHEN UChenToken
-  | SANSKRIT_UNICODE
+  | SANSKRIT_ROMAN SKTR
   | SANSKRIT_DEVA
+    deriving (Eq,Show)
+
+data SKTR
+  = SKTR_CONSONANT
+  | SKTR_VOWEL
+  | SKTR_TERMINAL
+  | SKTR_DIGIT
     deriving (Eq,Show)
 
 data UChenToken
