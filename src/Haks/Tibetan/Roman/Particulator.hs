@@ -9,7 +9,6 @@ import Data.Char hiding (Space)
 import Haks.Types
 import Haks.Utilities
 
-
 tokenizer :: Char -> Maybe (Token, Char)
 tokenizer tok 
   | isAlpha' = Just (TIBETAN_ROMAN, tok)
@@ -21,6 +20,11 @@ tokenizer tok
     isAlpha' = isAlpha tok
     isSpace' = isSpace tok
 
+oneSpace :: [(Token,Char)] -> [(Token,Char)]
+oneSpace []                       = []
+oneSpace ((Space,_):space@(Space,_):xs) = space:oneSpace xs
+oneSpace (x:xs)                   = x:oneSpace xs
+
 particulate :: Text -> [Particle] -> [(Token,Char)] -> [Particle]
 particulate (null -> True) particles [] = reverse particles
 particulate particle particles ((Space,_):xs) = 
@@ -28,13 +32,15 @@ particulate particle particles ((Space,_):xs) =
 particulate particle particles ((_,char):xs) = 
   particulate (particle `append` (pack $ char : [])) particles xs
 particulate _ _ [] = []
-{-
+
 tibetan_r :: ParticleConfig
 tibetan_r = ParticleConfig
-  { tokenizer_hc = tokenizer
+  { pre_processor_hc = id
+  , tokenizer_hc = tokenizer
+  , cleanup_hc   = oneSpace
   , particlate_hc = particulate
   }
--}
+
 
 test :: [Char]
 test = ['@','1','B',' ','*',',',' ',',','\'','D','U','L',' ','\'','D','Z','I','N',' ','C','H','E','N',' ','P','O',' ','G','N','A','S',' ','B','R','T','A','N',' ','N','Y','E',' ','B','A','R',' ','\'','K','H','O','R',',',' ',',']

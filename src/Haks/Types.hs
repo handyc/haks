@@ -7,8 +7,10 @@ import Data.Maybe
 import Data.Text hiding (empty)
 
 data ParticleConfig = ParticleConfig
-  { tokenizer_hc  :: Char -> Maybe (Token,Char)
-  , particlate_hc :: Text -> [Particle] -> [(Token,Char)] -> [Particle]
+  { pre_processor_hc :: [Char] -> [Char]
+  , tokenizer_hc     :: Char -> Maybe (Token,Char)
+  , cleanup_hc       :: [(Token,Char)] -> [(Token,Char)]
+  , particlate_hc    :: Text -> [Particle] -> [(Token,Char)] -> [Particle]
   }
 
 type Particle = Text

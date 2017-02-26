@@ -10,7 +10,7 @@ import Haks.NGram
 import Haks.Utilities
 
 haks :: [Char] -> ParticleConfig -> Int -> [NGram]
-haks corpus (ParticleConfig tokenate particulizor) n =
-  (ngram n . (particulizor empty []) . oneSpace . tokens) corpus
+haks corpus (ParticleConfig pre_processor tokenate cleanup particulizor) n =
+  (ngram n . (particulizor empty []) . cleanup . tokens . pre_processor) corpus
   where
-    tokens    = mapMaybe tokenate
+    tokens = mapMaybe tokenate  

@@ -21,9 +21,12 @@ tokenizer tok = (,) Chinese <$> fromBool isTok tok
 
 chinese_config :: ParticleConfig
 chinese_config = ParticleConfig 
-  { tokenizer_hc  = tokenizer
-  , particlate_hc   = particlate
+  { pre_processor_hc = id
+  , tokenizer_hc     = tokenizer
+  , cleanup_hc       = id
+  , particlate_hc    = particlate
   }
+
 not_tokens = [ ' ', '。', '.', '\n', '-', ',', '/', '(', '\\', '║', '=', ':'
              , '#', '_', '\r', '【', '】', ',', '》', '，', '　', '、', '：'
              , '「', '」', '？', '！', '；', '『', '』', '）', '（', '．', '…'
